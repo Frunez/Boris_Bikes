@@ -4,7 +4,9 @@ describe DockingStation do
 
   it { expect(DockingStation.new.respond_to? "release_bike").to eq true }
 
-describe Bike do
-  it {expect(Bike.new.respond_to? "working?").to eq true}
-end
+  it 'releases working bikes' do
+    bike = subject.release_bike
+    expect(bike).to be_working
+  end
+
 end
