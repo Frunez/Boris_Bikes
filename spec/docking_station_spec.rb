@@ -2,6 +2,17 @@ require 'docking_station'
 
 describe DockingStation do
 
+  describe '#initialize' do
+    it 'sets capacity to eq passed argument' do
+      capacity = 50
+      docking_station = DockingStation.new(capacity)
+      expect(docking_station.capacity).to eq capacity
+    end
+    it 'sets capacity of a docking station' do
+      expect(subject.capacity).to eq   DockingStation::DEFAULT_CAPACITY
+    end
+  end
+
   describe '#dock(bike)'
    it 'docks something' do
      bike = Bike.new
@@ -9,7 +20,7 @@ describe DockingStation do
      expect(subject.bikes).to include(bike)
    end
    it 'returns error when docking station is full' do
-     20.times { subject.dock Bike.new }
+     subject.capacity.times { subject.dock Bike.new }
      expect{subject.dock(Bike.new)}.to raise_error('Docking station is full')
    end
 
